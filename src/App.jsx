@@ -1,10 +1,9 @@
-import Navbar from "./components/Navbar"
 import LiquidEther from './components/ui/LiquidEther';
+import Hero from './components/Hero';
 
 function App() {
   return (
     <div className="relative w-screen h-screen">
-      {/* Background - LiquidEther */}
       <div className="absolute inset-0 w-full h-full">
         <LiquidEther
           colors={['#5227FF', '#FF9FFC', '#B19EEF']}
@@ -25,9 +24,8 @@ function App() {
         />
       </div>
       
-      {/* Navbar on top */}
-      <div className="relative z-10">
-        <Navbar />
+      <div className="relative z-10 flex items-center justify-center w-full h-full">
+        <Hero />
       </div>
     </div>
   )
