@@ -1,4 +1,6 @@
 import StaggeredMenu from './ui/StaggeredMenu';
+import TextType from './ui/TextType';
+import { ChevronDown } from 'lucide-react';
 
 export default function Hero() {
   const menuItems = [
@@ -33,12 +35,25 @@ export default function Hero() {
       
       {/* Hero Content - centered */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <h1 className="text-6xl font-black text-white tracking-widest mb-4 drop-shadow-2xl">
-          WELCOME TO MY PORTFOLIO
-        </h1>
-        <p className="text-normal text-purple-400 drop-shadow-[0_0_12px_rgba(168,85,247,1)] font-medium">
-          Tornike Alkhanishvili • Modern, Growth-Oriented Frontend Developer
-        </p>
+        <TextType 
+          text={["WELCOME TO MY PORTFOLIO"]}
+          typingSpeed={75}
+          pauseDuration={1500}
+          showCursor={false}
+          cursorCharacter="|"
+          loop={false}
+          className='text-8xl font-black text-white tracking-widest drop-shadow-2xl'
+        />
+        
+
+      </div>
+
+      {/* Scroll Indicator - Mouse with Arrow */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+          <div className="w-1 h-2 bg-white/70 rounded-full animate-pulse"></div>
+        </div>
+        <ChevronDown className="w-6 h-6 text-white/70" />
       </div>
     </div>
   );
