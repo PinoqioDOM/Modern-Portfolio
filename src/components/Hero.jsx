@@ -17,8 +17,7 @@ export default function Hero() {
   ];
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
-      {/* Fixed Menu - doesn't affect layout */}
+    <div className="relative w-screen h-screen overflow-hidden">      
       <StaggeredMenu
         isFixed={true}
         position="right"
@@ -32,8 +31,7 @@ export default function Hero() {
         colors={['#B19EEF', '#5227FF']}
         accentColor="purple"
       />
-      
-      {/* Hero Content - centered */}
+
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
         <TextType 
           text={["WELCOME TO MY PORTFOLIO"]}
@@ -42,13 +40,10 @@ export default function Hero() {
           showCursor={false}
           cursorCharacter="|"
           loop={false}
-          className='text-8xl font-black text-white tracking-widest drop-shadow-2xl'
+          className='text-7xl font-black tracking-wider drop-shadow-2xl bg-gradient-to-r from-purple-500 via-white to-purple-500 bg-clip-text text-transparent animate-shimmer bg-[length:300%_auto]'
         />
-        
-
       </div>
 
-      {/* Scroll Indicator - Mouse with Arrow */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
         <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
           <div className="w-1 h-2 bg-white/70 rounded-full animate-pulse"></div>

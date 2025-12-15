@@ -7,3 +7,18 @@ body {
   color: #E3E3E3;
   background-color: black;
 }
+
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 7s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+}
