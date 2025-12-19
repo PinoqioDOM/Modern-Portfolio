@@ -1,55 +1,150 @@
-import StaggeredMenu from './ui/StaggeredMenu';
-import TextType from './ui/TextType';
-import { ChevronDown } from 'lucide-react';
+import { ReactLenis } from "lenis/dist/lenis-react";
+import {
+  motion,
+  useMotionTemplate,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { SiSpacex } from "react-icons/si";
+import { FiArrowRight, FiMapPin } from "react-icons/fi";
+import Galaxy from "./Galaxy";
+import Laptop from '../assets/laptop.png'
 
-export default function Hero() {
-  const menuItems = [
-    { label: 'Home', ariaLabel: 'Go to home page', link: '/' },
-    { label: 'About', ariaLabel: 'Learn about us', link: '/about' },
-    { label: 'Services', ariaLabel: 'View our services', link: '/services' },
-    { label: 'Contact', ariaLabel: 'Get in touch', link: '/contact' }
-  ];
-
-  const socialItems = [
-    { label: 'Twitter', link: 'https://twitter.com' },
-    { label: 'GitHub', link: 'https://github.com' },
-    { label: 'LinkedIn', link: 'https://linkedin.com' }
-  ];
-
+export const SmoothScrollHero = () => {
   return (
-    <div className="relative w-screen h-screen overflow-hidden">      
-      <StaggeredMenu
-        isFixed={true}
-        position="right"
-        items={menuItems}
-        socialItems={socialItems}
-        displaySocials={true}
-        displayItemNumbering={true}
-        menuButtonColor="#fff"
-        openMenuButtonColor="#fff"
-        changeMenuColorOnOpen={true}
-        colors={['#B19EEF', '#5227FF']}
-        accentColor="purple"
-      />
-
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <TextType 
-          text={["WELCOME TO MY PORTFOLIO"]}
-          typingSpeed={75}
-          pauseDuration={1500}
-          showCursor={false}
-          cursorCharacter="|"
-          loop={false}
-          className='text-7xl font-black tracking-wider drop-shadow-2xl bg-gradient-to-r from-purple-500 via-white to-purple-500 bg-clip-text text-transparent animate-shimmer bg-[length:300%_auto]'
-        />
-      </div>
-
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-          <div className="w-1 h-2 bg-white/70 rounded-full animate-pulse"></div>
-        </div>
-        <ChevronDown className="w-6 h-6 text-white/70" />
-      </div>
+    <div className="bg-zinc-950">
+      <ReactLenis
+        root
+        options={{
+          lerp: 0.05,
+          infinite: false,
+          syncTouch: true,
+        }}
+      >
+        <Hero />
+        <Schedule />
+      </ReactLenis>
     </div>
   );
-}
+};
+
+const SECTION_HEIGHT = 1500;
+
+const Hero = () => {
+  return (
+    <div
+      style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
+      className="relative w-full"
+    >
+      <LaptopZoom />
+      <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-b from-zinc-950/0 to-zinc-950" />
+    </div>
+  );
+};
+
+const LaptopZoom = () => {
+  const { scrollY } = useScroll();
+
+  const scale = useTransform(scrollY, [0, SECTION_HEIGHT], [1, 3]);
+  
+  // Fade out the laptop image
+  const laptopOpacity = useTransform(scrollY, [SECTION_HEIGHT - 600, SECTION_HEIGHT], [1, 0]);
+  
+  // Blur effect for BACKGROUND - starts blurred, becomes clear as you scroll
+  const backgroundBlur = useTransform(scrollY, [0, SECTION_HEIGHT - 400], [15, 0]);
+  const backgroundFilter = useMotionTemplate`blur(${backgroundBlur}px)`;
+
+  return (
+    <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+      {/* Galaxy Background - BLURRED at start */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        style={{ filter: backgroundFilter }}
+      >
+        <Galaxy 
+          transparent={false}
+          density={1.2}
+          glowIntensity={0.6}
+          mouseInteraction={true}
+          hueShift={180}
+          saturation={0.3}
+          twinkleIntensity={0.5}
+          speed={0.5}
+        />
+      </motion.div>
+
+      {/* Laptop Image Container - ALWAYS CLEAR */}
+      <motion.div 
+        className="relative z-10 flex items-center justify-center"
+        style={{ scale }}
+      >
+        <motion.div 
+          className="relative"
+          style={{ opacity: laptopOpacity }}
+        >
+          <img 
+            src={Laptop} 
+            alt="Laptop" 
+            className="w-[900px] h-auto object-contain"
+          />
+          
+          {/* Galaxy inside laptop screen */}
+          <div className="absolute top-[16.5%] left-[31%] w-[43%] h-[40%] overflow-hidden rounded-lg">
+            <Galaxy 
+              transparent={false}
+              density={1.5}
+              glowIntensity={0.8}
+              mouseInteraction={true}
+              hueShift={200}
+              saturation={0.4}
+              twinkleIntensity={0.6}
+              speed={0.3}
+            />
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
+
+const Schedule = () => {
+  return (
+    <section
+      id="launch-schedule"
+      className="mx-auto max-w-5xl px-4 py-48 text-white"
+    >
+      <motion.h1
+        initial={{ y: 48, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.75 }}
+        className="mb-20 text-4xl font-black uppercase text-zinc-50"
+      >
+        My Projects
+      </motion.h1>
+      <ScheduleItem title="Project 1" date="2024" location="React" />
+      <ScheduleItem title="Project 2" date="2024" location="Node.js" />
+      <ScheduleItem title="Project 3" date="2023" location="Python" />
+      <ScheduleItem title="Project 4" date="2023" location="Next.js" />
+    </section>
+  );
+};
+
+const ScheduleItem = ({ title, date, location }) => {
+  return (
+    <motion.div
+      initial={{ y: 48, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75 }}
+      className="mb-9 flex items-center justify-between border-b border-zinc-800 px-3 pb-9"
+    >
+      <div>
+        <p className="mb-1.5 text-xl text-zinc-50">{title}</p>
+        <p className="text-sm uppercase text-zinc-500">{date}</p>
+      </div>
+      <div className="flex items-center gap-1.5 text-end text-sm uppercase text-zinc-500">
+        <p>{location}</p>
+        <FiMapPin />
+      </div>
+    </motion.div>
+  );
+};
