@@ -8,6 +8,7 @@ import {
 import { FiMapPin } from "react-icons/fi";
 import Galaxy from "./Galaxy";
 import Laptop from '../assets/laptop.png'
+import FirstSection from "./FirstSection";
 
 
 export const SmoothScrollHero = () => {
@@ -117,7 +118,7 @@ const Schedule = () => {
         transition={{ ease: "easeInOut", duration: 0.75 }}
         className="mb-20 text-4xl font-black uppercase text-zinc-50"
       >
-        SKILLS
+        <FirstSection />
       </motion.h1>
 
 
