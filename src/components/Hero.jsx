@@ -5,10 +5,10 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { SiSpacex } from "react-icons/si";
-import { FiArrowRight, FiMapPin } from "react-icons/fi";
+import { FiMapPin } from "react-icons/fi";
 import Galaxy from "./Galaxy";
 import Laptop from '../assets/laptop.png'
+
 
 export const SmoothScrollHero = () => {
   return (
@@ -46,11 +46,9 @@ const LaptopZoom = () => {
   const { scrollY } = useScroll();
 
   const scale = useTransform(scrollY, [0, SECTION_HEIGHT], [1, 3]);
-  
-  // Fade out the laptop image
+
   const laptopOpacity = useTransform(scrollY, [SECTION_HEIGHT - 600, SECTION_HEIGHT], [1, 0]);
-  
-  // Blur effect for BACKGROUND - starts blurred, becomes clear as you scroll
+
   const backgroundBlur = useTransform(scrollY, [0, SECTION_HEIGHT - 400], [15, 0]);
   const backgroundFilter = useMotionTemplate`blur(${backgroundBlur}px)`;
 
@@ -119,12 +117,10 @@ const Schedule = () => {
         transition={{ ease: "easeInOut", duration: 0.75 }}
         className="mb-20 text-4xl font-black uppercase text-zinc-50"
       >
-        My Projects
+        SKILLS
       </motion.h1>
-      <ScheduleItem title="Project 1" date="2024" location="React" />
-      <ScheduleItem title="Project 2" date="2024" location="Node.js" />
-      <ScheduleItem title="Project 3" date="2023" location="Python" />
-      <ScheduleItem title="Project 4" date="2023" location="Next.js" />
+
+
     </section>
   );
 };
