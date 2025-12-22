@@ -30,7 +30,6 @@ const SplineScene = () => {
                 WebkitTextStroke: '0.5px rgba(138, 43, 226, 0.7)'
             }}
         >
-        FRONT END DEVELOPER
         <style>{`
             @keyframes shine {
             to { background-position: 100% center; }

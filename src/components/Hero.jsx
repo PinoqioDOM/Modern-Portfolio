@@ -9,6 +9,7 @@ import { FiMapPin } from "react-icons/fi";
 import Galaxy from "./Galaxy";
 import Laptop from '../assets/laptop.png'
 import Robot from "./Robot";
+import PinoqioHero from "./PinoqioHero";
 
 export const SmoothScrollHero = () => {
   return (
@@ -118,7 +119,7 @@ const Schedule = () => {
         transition={{ ease: "easeInOut", duration: 0.75 }}
         className="flex items-center justify-center mb-20 text-7xl font-black uppercase text-zinc-50 "
       >
-        <Robot />
+        <PinoqioHero />
       </motion.h1>
 
 
