@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const PinoqioHero = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [setIsVisible] = useState(false);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -26,7 +26,7 @@ const PinoqioHero = () => {
       style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}
     >
       {/* Background Text - PINOQIO */}
-      <div className="absolute inset-0 bottom-85 left-8 flex items-center justify-center pointer-events-none z-0">
+      <div className="absolute inset-0 bottom-70 left-5 flex items-center justify-center pointer-events-none z-0">
         <h1 
           className="text-[18vw] font-black uppercase tracking-wider select-none"
           style={{
