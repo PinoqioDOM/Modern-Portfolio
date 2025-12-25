@@ -9,7 +9,6 @@ const PinoqioHero = () => {
     script.src = 'https://unpkg.com/@splinetool/viewer@1.12.27/build/spline-viewer.js';
     document.head.appendChild(script);
 
-    // Trigger animation after component mounts
     setTimeout(() => setIsVisible(true), 100);
 
     return () => {
@@ -42,6 +41,13 @@ const PinoqioHero = () => {
         >
           PINOQIO
         </h1>
+      </div>
+
+      <div className="absolute bottom-4 right-4  z-20">
+        <div className="flex items-center gap-2 bg-purple-900/30 backdrop-blur px-4 py-2 rounded-full border border-purple-500">
+          <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse" />
+          <span className="text-white text-sm font-bold">FRONT END DEVELOPER</span>
+        </div>
       </div>
 
       {/* Centered Robot - Full Width */}
